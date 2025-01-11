@@ -43,6 +43,7 @@ NESTED_MORSE = {
 
 
 def main():
+    """translate from alphanum to morse code"""
     try:
         assert len(argv) == 2
         print(''.join(NESTED_MORSE.get(c.upper() if c.islower() else c)
