@@ -5,7 +5,7 @@ def main():
     """count types of characters in a string"""
     punctuation = "!”#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
     try:
-        assert len(argv) <= 2, "more than one argument is provided"
+        assert len(argv) <= 2, "AssertionError: more than one argument is provided"
         if len(argv) == 1 or argv[1] is None:
             string = input("What is the text to count?\n")
         else:
