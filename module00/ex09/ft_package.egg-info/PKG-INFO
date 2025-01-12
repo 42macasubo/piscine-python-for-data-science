@@ -1,0 +1,22 @@
+Metadata-Version: 2.2
+Name: ft_package
+Version: 0.0.1
+Summary: My first Python package
+Author: macasubo
+Author-email: <macasubo@student.42.fr>
+Keywords: python,first package
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: keywords
+Dynamic: summary
+
+My first Python package with a slightly longer description
