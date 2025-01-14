@@ -32,7 +32,7 @@ def main():
 
 #    df = income.join(life_expectancy, lsuffix='_income', rsuffix='_life_expectancy')
     df = income.merge(life_expectancy, how='left', on='country', suffixes=('_income', '_life'))
-    df = df.sort_values(by='1900_income')
+    df = df.dropna(axis='index').sort_values(by='1900_income')
 #    print(df)
 
     with open("out", 'w') as f:
@@ -42,13 +42,27 @@ def main():
     ax.scatter(df['1900_income'], df['1900_life'])
     ax.set_xscale('log')
     print(ax.get_xticks())
-    ax.set_xticks([300, 1000, 10000], labels=['300', '1k', '10k'])
 #    ax.get_xaxis().set_major_formatter(matplot.ticker.FuncFormatter(lambda x, p: (x / 1000)))
 
     ax.set_title("1900")
     ax.set_xlabel("Gross domestic product")
     ax.set_ylabel("Life expectancy")
 
+    print(df['1900_life'].to_list())
+    m, b = np.polyfit(df['1900_income'].to_list(), df['1900_life'].to_list(), 1)
+    print('m: ', m)
+    print('b: ', b)
+    life_fit = df['1900_income'].apply(lambda x: m * x + b)
+#    print(income_modified)
+#    ax.plot(df['1900_income'], life_fit, color='red', label="y = {}x + {}".format(m, b))
+    ax.plot(df['1900_income'], life_fit, color='red')
+    ax.legend(["data points", "y = {:.3f}x + {:.3f}".format(m, b)], loc='lower right')
+    correlation = df['1900_income'].corr(df['1900_life'])
+    print('correlation: ', correlation)
+
+#    ax.plot([df['1900_income'].min(), df['1900_income'].max()], [df['1900_life'].min(), df['1900_life'].max()])
+
+    ax.set_xticks([300, 1000, 10000], labels=['300', '1k', '10k'])
     plt.show()
 
     """
